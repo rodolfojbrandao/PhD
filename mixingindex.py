@@ -22,7 +22,7 @@ Raio = list()
 contador1 = list()
 contador2 = list()
 contador = list()
-tempo = np.transpose([0]*NF)
+tempo = np.zeros(NF)
 path='/home/hp/Desktop/dados'
 os.chdir(path)
 
@@ -34,7 +34,7 @@ def f(a):
             #data = data.drop(['id', 'f:0', 'f:1', 'f:2', 'omega:0', 'omega:1', 'omega:2'], axis = 1)
             #data.to_csv(f'dados.{j}.csv')
             tempo[j] = 0.1*j+0.1
-            M = pd.read_csv(f'dados.{j}.csv')
+            Dados = pd.read_csv(f'dados.{j}.csv')
 
 if __name__=='__main__':
     Tarefas=len(a)

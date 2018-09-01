@@ -2,12 +2,14 @@ import os
 import numpy as np
 import pandas as pd
 from multiprocessing import Pool
+import time
 
 N = 8 #number of cores
 a = list(range(N))
 NF = 500
 path='/home/hp/Desktop/dados'
 os.chdir(path)
+result = 0
 
 def f(a):
     inicio = int(a*NF/N)
@@ -16,6 +18,7 @@ def f(a):
             data = pd.read_csv(f'dados.{j}.csv')
             data = data.drop(['id', 'f:0', 'f:1', 'f:2', 'omega:0', 'omega:1', 'omega:2'], axis = 1)
             data.to_csv(f'dados.{j}.csv')
+    end = time.time()
 
 if __name__=='__main__':
     Tarefas=len(a)
