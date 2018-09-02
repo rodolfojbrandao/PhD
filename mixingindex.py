@@ -6,12 +6,13 @@ from multiprocessing import Pool
 
 N = 8 #number of cores
 a = list(range(N))
-NF = 49 #number of files
+NF = 8 #number of files
 raio1 = 0.0009
 raio2 = 0.0021
 rx = 5
 ry = 5
 rz = 10
+tamanho = rx*ry*rz
 
 velocidade_resultante = list()
 posicaoX = list()
@@ -22,7 +23,8 @@ Raio = list()
 contador1 = list()
 contador2 = list()
 contador = list()
-tempo = np.zeros(NF)
+np.linspace(0.1,49.0,NF)
+velocidade_resultante = np.zeros((5000000,NF))
 path='/home/hp/Desktop/dados'
 os.chdir(path)
 
@@ -32,10 +34,21 @@ def f(a):
     for j in range(inicio,fim):
             #data = pd.read_csv(f'dados.{j}.csv')
             #data = data.drop(['id', 'f:0', 'f:1', 'f:2', 'omega:0', 'omega:1', 'omega:2'], axis = 1)
-            #data.to_csv(f'dados.{j}.csv')
-            tempo[j] = 0.1*j+0.1
             Dados = pd.read_csv(f'dados.{j}.csv')
+            posicaoX = Dados.iloc[:, 6].copy()
+            posicaoY = Dados.iloc[:, 7].copy()
+            posicaoZ = Dados.iloc[:, 8].copy()
+            Tipo = Dados.iloc[:, 1].copy()
+            Raio = Dados.iloc[:, 5].copy()
+            vx = Dados.iloc[:, 2].copy()
+            vy = Dados.iloc[:, 3].copy()
+            vz = Dados.iloc[:, 4].copy()
 
+            #row = Dados.shape[0]
+            #for i in range(row):
+             #   velocidade_resultante[i,j] = Dados.iloc[i, 2]*Dados.iloc[i, 2]+Dados.iloc[i, 3]*Dados.iloc[i, 3]+Dados.iloc[i, 4]*Dados.iloc[i, 4]
+    #print(velocidade_resultante)
+    print(posicaoX)
 if __name__=='__main__':
     Tarefas=len(a)
     with Pool(Tarefas) as p:
@@ -45,18 +58,12 @@ if __name__=='__main__':
 
 """velocidade_resultante(:, k) = [(M(2:$, 3). ^ 2 + M(2:$, 4).^ 2 + M(2:$, 5).^ 2).^ 0.5];
 
-posicaoX(:, k) = [M(2:$, 7)]
-posicaoY(:, k) = [M(2:$, 8)]
-posicaoZ(:, k) = [M(2:$, 9)]
-Tipo(:, k) = [M(2:$, 2)]
-Raio(:, k) = [M(2:$, 6)]
-end
 V_medio = mean(velocidade_resultante, 'r');
 
 gradeamentoX = (max(posicaoX) - min(posicaoX)) / rx;
 gradeamentoY = (max(posicaoY) - min(posicaoY)) / ry;
 gradeamentoZ = (max(posicaoZ) - min(posicaoZ)) / rz;
-tamanho = (rx * ry * rz);
+
 contador_tipo1 = zeros(tamanho, max(tempo) * 10);
 contador_tipo2 = zeros(tamanho, max(tempo) * 10);
 velocidade_tipo1 = zeros(tamanho, max(tempo) * 10);
