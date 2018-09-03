@@ -6,8 +6,9 @@ from multiprocessing import Pool
 
 N = 8 #number of cores
 a = list(range(N))
-NF = 8 #number of files
-raio1 = 0.0009
+NF = 491 #number of files
+raio1 = \
+    0.0009
 raio2 = 0.0021
 rx = 5
 ry = 5
@@ -25,6 +26,12 @@ contador2 = list()
 contador = list()
 np.linspace(0.1,49.0,NF)
 velocidade_resultante = np.zeros((5000000,NF))
+contador_tipo1 = np.zeros((tamanho,NF));
+contador_tipo2 = np.zeros((tamanho,NF));
+velocidade_tipo1 = np.zeros((tamanho,NF));
+velocidade_tipo2 = np.zeros((tamanho,NF));
+posicao_vetor = 1;
+
 path='/home/hp/Desktop/dados'
 os.chdir(path)
 
@@ -35,6 +42,7 @@ def f(a):
             #data = pd.read_csv(f'dados.{j}.csv')
             #data = data.drop(['id', 'f:0', 'f:1', 'f:2', 'omega:0', 'omega:1', 'omega:2'], axis = 1)
             Dados = pd.read_csv(f'dados.{j}.csv')
+            # row = Dados.shape[0]
             posicaoX = Dados.iloc[:, 6].copy()
             posicaoY = Dados.iloc[:, 7].copy()
             posicaoZ = Dados.iloc[:, 8].copy()
@@ -44,11 +52,11 @@ def f(a):
             vy = Dados.iloc[:, 3].copy()
             vz = Dados.iloc[:, 4].copy()
 
-            #row = Dados.shape[0]
+
             #for i in range(row):
              #   velocidade_resultante[i,j] = Dados.iloc[i, 2]*Dados.iloc[i, 2]+Dados.iloc[i, 3]*Dados.iloc[i, 3]+Dados.iloc[i, 4]*Dados.iloc[i, 4]
     #print(velocidade_resultante)
-    print(posicaoX)
+    #print(posicaoX)
 if __name__=='__main__':
     Tarefas=len(a)
     with Pool(Tarefas) as p:
@@ -64,11 +72,6 @@ gradeamentoX = (max(posicaoX) - min(posicaoX)) / rx;
 gradeamentoY = (max(posicaoY) - min(posicaoY)) / ry;
 gradeamentoZ = (max(posicaoZ) - min(posicaoZ)) / rz;
 
-contador_tipo1 = zeros(tamanho, max(tempo) * 10);
-contador_tipo2 = zeros(tamanho, max(tempo) * 10);
-velocidade_tipo1 = zeros(tamanho, max(tempo) * 10);
-velocidade_tipo2 = zeros(tamanho, max(tempo) * 10);
-posicao_vetor = 1;
 
 for m=1:max(tempo) * 10
 p = 0;
