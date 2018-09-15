@@ -86,6 +86,7 @@ for i in range(0, len(a)):
                 x1_mini_NT = x1
                 x2_mini_NT = x2
                 x3_mini_NT = x3
+RL_maxi = 57
 print(f' maximo de RL eh de {RL_maxi:.2f} com x1 de {x1_maxi_RL:.2f}, x2 de {x2_maxi_RL:.2f} e x3 de {x3_maxi_RL:.2f}')
 print(f' minimo de RL eh de {RL_mini:.2f} com x1 de {x1_mini_RL:.2f}, x2 de {x2_mini_RL:.2f} e x3 de {x3_mini_RL:.2f}')
 
