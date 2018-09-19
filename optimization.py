@@ -86,8 +86,13 @@ for i in range(0, len(a)):
                 x2_mini_NT = x2
                 x3_mini_NT = x3
 RL_maxi = 57
+<<<<<<< HEAD
 print(' maximo de RL eh de {:.2f} com x1 de {:.2f}, x2 de {:.2f} e x3 de {:.2f}'.format(RL_maxi,x1_maxi_RL,x2_maxi_RL,x3_maxi_RL))
 print(' minimo de RL eh de {:.2f} com x1 de {:.2f}, x2 de {:.2f} e x3 de {:.2f}'.format(RL_mini,x1_mini_RL,x2_mini_RL,x3_mini_RL))
+=======
+print(f' maximo de RL eh de {RL_maxi:.2f} com x1 de {x1_maxi_RL:.2f}, x2 de {x2_maxi_RL:.2f} e x3 de {x3_maxi_RL:.2f}')
+print(f' minimo de RL eh de {RL_mini:.2f} com x1 de {x1_mini_RL:.2f}, x2 de {x2_mini_RL:.2f} e x3 de {x3_mini_RL:.2f}')
+>>>>>>> 0c5a56f9992ad74e755cde5a61ca61050586208d
 
 print(' maximo de HC eh de {:.2f} com x1 de {:.2f}, x2 de {:.2f} e x3 de {:.2f}'.format(HC_maxi,x1_maxi_HC,x2_maxi_HC,x3_maxi_HC))
 print(' minimo de HC eh de {:.2f} com x1 de {:.2f}, x2 de {:.2f} e x3 de {:.2f}'.format(HC_mini,x1_mini_HC,x2_mini_HC,x3_mini_HC))
