@@ -6,8 +6,13 @@ import time
 
 N = 24 #number of cores
 a = list(range(N))
+<<<<<<< HEAD
 NF = 500
 path='/home/rodolfo/Desktop/dados1'
+=======
+NF = 10
+path='/home/hp/Desktop/dados'
+>>>>>>> e6452fb3f7177134e6e6acb4c453cfff15848db9
 os.chdir(path)
 result = 0
 
