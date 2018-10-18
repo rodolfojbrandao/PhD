@@ -2,17 +2,11 @@ import os
 import numpy as np
 import pandas as pd
 from multiprocessing import Pool
-import time
 
-N = 24 #number of cores
+N = 4 #number of cores
 a = list(range(N))
-<<<<<<< HEAD
 NF = 500
-path='/home/rodolfo/Desktop/dados1'
-=======
-NF = 10
-path='/home/hp/Desktop/dados'
->>>>>>> e6452fb3f7177134e6e6acb4c453cfff15848db9
+path='/home/rodolfo/Desktop/dados'
 os.chdir(path)
 result = 0
 

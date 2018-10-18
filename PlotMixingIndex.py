@@ -4,8 +4,8 @@ import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
 from multiprocessing import Pool
-import statsmodels.api as sm
-import statsmodels.formula.api as smf # pacotes estatisticos
+#import statsmodels.api as sm
+#import statsmodels.formula.api as smf # pacotes estatisticos
 
 path='/home/rodolfo//Dropbox/Doutorado/Resultados/segregacao-efeito-combinado-tamanho-densidade'
 
