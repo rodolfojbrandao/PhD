@@ -4,7 +4,7 @@ import pandas as pd
 import math
 
 #NF = 4 #number of files
-NF = 8 #number of files
+NF = 2 #number of files
 NP = 147465 #number of particles
 raio1 = 0.0009
 raio2 = 0.0021
@@ -26,10 +26,10 @@ Raio = np.zeros((NP,NF))
 vx = np.zeros((NP,NF))
 vy = np.zeros((NP,NF))
 vz = np.zeros((NP,NF))
-contador_tipo1 = np.zeros((tamanho,NF))
-contador_tipo2 = np.zeros((tamanho,NF))
-velocidade_tipo1 = np.zeros((tamanho,NF))
-velocidade_tipo2 = np.zeros((tamanho,NF))
+contador_tipo1 = pd.DataFrame(np.zeros((tamanho,NF)))
+contador_tipo2 = pd.DataFrame(np.zeros((tamanho,NF)))
+velocidade_tipo1 = pd.DataFrame(np.zeros((tamanho,NF)))
+velocidade_tipo2 = pd.DataFrame(np.zeros((tamanho,NF)))
 posicao_vetor = 1
 
 path='/home/rodolfo/Desktop/dados'
@@ -73,11 +73,31 @@ InferiorZ=float(posicaoZ.iloc[:,[1]].min())
 for m in range(0,NF):
     p=0
     q=0
-    for n in range(1, len(vx)):
+    concluido = m/NF*100
+    print(concluido)
+    for n in range(1, 100):
+        posicaoXX = posicaoX.iloc[n,m].copy()
+        posicaoYY = posicaoY.iloc[n,m].copy()
+        posicaoZZ = posicaoZ.iloc[n,m].copy()
+        #print('ok')
         for pz in range(1,rz):
             for py in range(1,ry):
                 for px in range(1,rx):
-                    if posicaoX.iloc[[n],[m]]>InferiorX+(px-1)*gradeamentoX and posicaoX.iloc[[n],[m]]<InferiorX+px*gradeamentoX \
-                        and posicaoY.iloc[[n],[m]]>InferiorY+(py-1)*gradeamentoY and posicaoY.iloc[[n],[m]]<InferiorY+py*gradeamentoY \
-                            and posicaoZ.iloc[[n],[m]]>InferiorZ+(pz-1)*gradeamentoZ and posicaoZ.iloc[[n],[m]]<InferiorZ+pz*gradeamentoZ:
-                        posicao_vetor = -30+px+5*py+25*pz
+                    if posicaoXX>InferiorX+(px-1)*gradeamentoX and posicaoXX<InferiorX+px*gradeamentoX \
+                            and posicaoYY>InferiorY+(py-1)*gradeamentoY and posicaoYY<InferiorY+py*gradeamentoY \
+                            and posicaoZZ>InferiorZ+(pz-1)*gradeamentoZ and posicaoZZ<InferiorZ+pz*gradeamentoZ:
+                        posicao_vetor = -31 + px + 5 * py + 25 * pz
+
+                        if Tipo.iloc[n,m]<1.5:
+                            contador_tipo1.iloc[posicao_vetor,m] = contador_tipo1.iloc[posicao_vetor,m]+1
+#                            p=p+1
+#                            velocidade_tipo1.iloc[p,m] = velocidade_resultante.iloc[n,m].copy()
+                        else:
+                            contador_tipo2.iloc[posicao_vetor, m] = contador_tipo2.iloc[posicao_vetor, m] + 1
+#                            q = q + 1
+#                            velocidade_tipo2.iloc[p, m] = velocidade_resultante.iloc[n, m].copy()
+                    else:
+                        contador_tipo1.iloc[posicao_vetor, m] = contador_tipo1.iloc[posicao_vetor, m] + 0
+                        contador_tipo2.iloc[posicao_vetor, m] = contador_tipo2.iloc[posicao_vetor, m] + 0
+
+print(contador_tipo1)
