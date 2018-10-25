@@ -3,10 +3,10 @@ import numpy as np
 import pandas as pd
 from multiprocessing import Pool
 
-N = 4 #number of cores
+N = 24 #number of cores
 a = list(range(N))
 NF = 500
-path='/home/rodolfo/Desktop/dados'
+path='/media/rodolfo/5A0819190818F5AB/DOUTORADO-SIMULACOES-COMPLETAS/PCC-efeito-combinado-tamanho-densidade/12/dados'
 os.chdir(path)
 result = 0
 
@@ -17,7 +17,6 @@ def f(a):
             data = pd.read_csv('dados.{}.csv'.format(j))
             data = data.drop(['id', 'f:0', 'f:1', 'f:2', 'omega:0', 'omega:1', 'omega:2'], axis = 1)
             data.to_csv('dados.{}.csv'.format(j))
-    end = time.time()
 
 if __name__=='__main__':
     Tarefas=len(a)
