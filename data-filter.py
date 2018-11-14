@@ -5,8 +5,8 @@ from multiprocessing import Pool
 
 N = 24 #number of cores
 a = list(range(N))
-NF = 500
-path='/media/rodolfo/5A0819190818F5AB/DOUTORADO-SIMULACOES-COMPLETAS/PCC-efeito-combinado-tamanho-densidade/12/dados'
+NF = 490
+path='/media/rodolfo/5A0819190818F5AB/DOUTORADO-SIMULACOES-COMPLETAS/PCC-efeito-combinado-tamanho-densidade/02/dados'
 os.chdir(path)
 result = 0
 

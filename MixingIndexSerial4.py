@@ -5,9 +5,9 @@ import math
 from pandas import DataFrame
 
 NF = 489 #number of files
-NP = 273408 #number of particles
-r1 = 0.0009
-r2 = 0.0009
+NP = 59056 #number of particles
+r1 = 0.0015
+r2 = 0.0015
 v1=(4/3*math.pi*r1*r1*r1)
 v2=(4/3*math.pi*r2*r2*r2)
 rx = 5
@@ -27,7 +27,7 @@ contador_tipo1 = pd.DataFrame(np.zeros((tamanho,NF)))  # type: DataFrame
 contador_tipo2 = pd.DataFrame(np.zeros((tamanho,NF)))
 posicao_vetor = 1
 
-path='/media/rodolfo/5A0819190818F5AB/DOUTORADO-SIMULACOES-COMPLETAS/PCC-efeito-combinado-tamanho-densidade/02/dados'
+path='/media/rodolfo/5A0819190818F5AB/DOUTORADO-SIMULACOES-COMPLETAS/PCC-efeito-combinado-tamanho-densidade/24/dados'
 os.chdir(path)
 
 for j in range (0,NF):
@@ -79,4 +79,4 @@ for n in range(0, len(contador_tipo1)):
 
 cout1=pd.DataFrame(cout1)
 indice=pd.DataFrame(cout1.std())
-indice.to_csv('dados02_New.csv')
+indice.to_csv('dados24_New.csv')
