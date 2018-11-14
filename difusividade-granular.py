@@ -4,7 +4,7 @@ import pandas as pd
 from multiprocessing import Pool
 import math
 
-path='/media/rodolfo/5A0819190818F5AB/DOUTORADO-SIMULACOES-COMPLETAS/Difusividade-granular/46/dados'
+path='/media/rodolfo/5A0819190818F5AB/DOUTORADO-SIMULACOES-COMPLETAS/Difusividade-granular/05/dados'
 os.chdir(path)
 
 NF = 49 #number of files
