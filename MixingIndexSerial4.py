@@ -5,11 +5,12 @@ import math
 from pandas import DataFrame
 
 NF = 489 #number of files
-NP = 59056 #number of particles
-r1 = 0.0015
-r2 = 0.0015
+NP = 465066 #number of particles
+r1 = 0.003
+r2 = 0.003*0.2
 v1=(4/3*math.pi*r1*r1*r1)
 v2=(4/3*math.pi*r2*r2*r2)
+v = 0.03*0.03*0.03
 rx = 5
 ry = 5
 rz = 10
@@ -25,9 +26,11 @@ posicaoZ = np.zeros((NP,NF))
 Tipo = np.zeros((NP,NF))
 contador_tipo1 = pd.DataFrame(np.zeros((tamanho,NF)))  # type: DataFrame
 contador_tipo2 = pd.DataFrame(np.zeros((tamanho,NF)))
+Volume = pd.DataFrame(np.zeros((tamanho,NF)))
+
 posicao_vetor = 1
 
-path='/media/rodolfo/5A0819190818F5AB/DOUTORADO-SIMULACOES-COMPLETAS/PCC-efeito-combinado-tamanho-densidade/24/dados'
+path='/media/rodolfo/5A0819190818F5AB/DOUTORADO-SIMULACOES-COMPLETAS/segregacao-tamanho/20/dados'
 os.chdir(path)
 
 for j in range (0,NF):
@@ -72,11 +75,12 @@ for m in range(0,NF):
             contador_tipo1.iloc[posicao_vetor,m] = contador_tipo1.iloc[posicao_vetor,m]+1
         else:
             contador_tipo2.iloc[posicao_vetor, m] = contador_tipo2.iloc[posicao_vetor, m] + 1
-
-for n in range(0, len(contador_tipo1)):
-    if contador_tipo1.iloc[n,NF-1]>50:
+Volume = contador_tipo1*v1/v*100+contador_tipo2*v2/v*100
+#print(Area)
+for n in range(0, len(Volume)):
+    if Volume.iloc[n,NF-1]>5:
         cout1.append((contador_tipo1.iloc[n,:]*v1)/((contador_tipo1.iloc[n,:]*v1)+(contador_tipo2.iloc[n,:]*v2)))
 
 cout1=pd.DataFrame(cout1)
 indice=pd.DataFrame(cout1.std())
-indice.to_csv('dados24_New.csv')
+indice.to_csv('dados20_New.csv')

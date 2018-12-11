@@ -4,11 +4,11 @@ import pandas as pd
 from multiprocessing import Pool
 import math
 
-path='/media/rodolfo/5A0819190818F5AB/DOUTORADO-SIMULACOES-COMPLETAS/Difusividade-granular/05/dados'
+path='/media/rodolfo/5A0819190818F5AB/DOUTORADO-SIMULACOES-COMPLETAS/Difusividade-granular/67/dados'
 os.chdir(path)
 
-NF = 49 #number of files
-NP = 25000 #number of particles
+NF = 35 #number of files
+NP = 170000 #number of particles
 ts = 1
 
 posicaoX = np.zeros((5,NF))
