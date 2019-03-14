@@ -171,10 +171,10 @@ for i in range(0, len(a)):
 
 print('=============================================================================================')
 print(' ponto otimo com valor de {:.2f} com x1 de {:.2f}, x2 de {:.2f} e x3 de {:.2f}'.format(D,x1_opt,x2_opt,x3_opt))
-print(' y1 com valor de {:.2f} com y2 de {:.2f}'.format(y1_opt))
-print(' y2 com valor de {:.2f} com y2 de {:.2f}'.format(y2_opt))
-print(' y3 com valor de {:.2f} com y2 de {:.2f}'.format(y3_opt))
-print(' y4 com valor de {:.2f} com y2 de {:.2f}'.format(y4_opt))
-print(' y5 com valor de {:.2f} com y2 de {:.2f}'.format(y5_opt))
+print(' y1 com valor de {:.2f}'.format(y1_opt))
+print(' y2 com valor de {:.2f}'.format(y2_opt))
+print(' y3 com valor de {:.2f}'.format(y3_opt))
+print(' y4 com valor de {:.2f}'.format(y4_opt))
+print(' y5 com valor de {:.2f}'.format(y5_opt))
 
 
