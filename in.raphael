@@ -1,0 +1,88 @@
+### Tambor alimentacao
+
+### Initialization
+# Preliminaries
+units si
+atom_style 		    sphere
+atom_modify 		    map array
+boundary 		    f f f
+newton 			    off
+communicate 		    single vel yes
+echo both
+
+#processors
+processors 		    1 1 8
+
+# Declare domain
+region 			    domain block -0.06 0.06 -0.06 0.06 0.00 0.36 units box
+create_box 		    3 domain
+
+# Neighbor listing
+neighbor 		    0.03 bin
+neigh_modify 		    delay 0
+
+### Setup
+# Material and interaction properties required
+fix m1 all property/global youngsModulus peratomtype 5.0e6 5.0e6 5.0e6
+fix m2 all property/global poissonsRatio peratomtype 0.2 0.2 0.3
+fix m3 all property/global coefficientRestitution peratomtypepair 3 0.9 0.9 0.7 0.9 0.9 0.7 0.7 0.7 0.9 
+fix m4 all property/global coefficientFriction peratomtypepair 3 0.24 0.24 0.5 0.24 0.24 0.5 0.5 0.5 0.5
+fix m5 all property/global coefficientRollingFriction peratomtypepair 3 0.01 0.01 0.05 0.01 0.01 0.05 0.05 0.05 0.01	
+
+# Particle insertion
+
+fix pts1 all particletemplate/sphere 15485863  atom_type 1 density constant 2320 radius constant 0.0095
+fix pdd1 all particledistribution/discrete 32452843 1 pts1 1.0
+
+#Factory domain
+region factory1 block -0.03 0.03 -0.03 0.03 0.0 0.36 units box
+
+# Import mesh from cad:
+fix cad all mesh/surface file meshes/raphael.stl type 3 scale 1
+
+# Use the imported mesh as granular wall
+fix meshwalls all wall/gran model hertz tangential history rolling_friction cdt mesh n_meshes 1 meshes cad
+
+# Define the physics
+pair_style 		gran model hertz tangential history rolling_friction cdt
+pair_coeff 		* *
+
+### Detailed settings
+# Integrator
+fix 			integrate all nve/sphere
+
+# Gravity
+fix 			grav all gravity 9.81 vector 0.0 -1.0 0.0
+
+# Time step
+timestep 		0.0001
+
+# Thermodynamic output settings
+thermo_style 	custom step atoms ke cpu
+thermo 			1000
+thermo_modify 	norm no lost ignore
+
+#compute ColP1 all contact/atom
+#compute WallP1 all wall/gran/local
+compute atomtrack all contact/atom
+
+# Check time step and initialize dump file
+fix 			ctg all check/timestep/gran 1 0.01 0.01
+run			1 upto
+unfix 			ctg
+
+fix ins1 all insert/pack seed 67867967 distributiontemplate pdd1 insert_every once overlapcheck yes particles_in_region 71 region factory1 ntry_mc 10000
+
+run		50000 upto
+unfix	ins1
+
+# Create imaging information
+dump dmp all custom/vtk 1000 post/granularfillingdrum*.vtk id type type x y z vx vy vz radius
+dump dumpstl all mesh/stl 1000 post/geometryfillingdrum*.stl
+dump collide all custom 1000 CSVs/dump*.csv c_atomtrack
+
+#moving mesh
+fix movecad1 all move/mesh mesh cad rotate origin 0. 0. 0 axis 0. 0. 1. period 1.5
+
+# Rotating the drum
+run 600000 
