@@ -3,11 +3,11 @@ import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 
-for i in range(20, 51, 10):
-    for j in range(20, 51, 10):
-        for k in range(20, 51, 10):
-            for l in range(10, 501, 10):
-                for m in range(10, 501, 10):
+for i in range(20, 51, 5):
+    for j in range(20, 51, 5):
+        for k in range(20, 51, 5):
+            for l in range(10, 501, 5):
+                for m in range(10, 501, 5):
                     a = i/10
                     b = j/10
                     c = k/10
