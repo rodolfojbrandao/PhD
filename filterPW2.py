@@ -6,11 +6,11 @@ import math
 
 N = 24   #number of cores
 a = list(range(N))
-NF = 601
+NF = 4000
 forceTotal = np.zeros((NF,1))
 colCounter = np.zeros((NF,1))
 
-path = '/home/rodolfo/Desktop/06/colForcePP'
+path = '/home/rodolfo/Desktop/AnaliseRegimes/EquipamentoPropriedadesGranularesEsfera/25/colForcePW/PW'
 os.chdir(path)
 result = 0
 
@@ -21,7 +21,7 @@ def f(a):
     fim = int((a+1)*NF/N)
     for j in range(inicio,fim):
         filenumber = j
-        data = pd.read_csv('PP.{}.csv'.format(filenumber))
+        data = pd.read_csv('PW.{}.csv'.format(filenumber))
         velocity1 = data.iloc[:,0:3]
         velocity1.to_csv('velocity1.{}.csv'.format(filenumber))
         velocity2 = data.iloc[:,3:6]
@@ -63,6 +63,6 @@ for j in range (0,NF):
     forceTotal[j] = np.mean(d)
 
 colCounter = pd.DataFrame(colCounter)
-colCounter.to_csv('1-Number_of_Collisions_PP.csv')
+colCounter.to_csv('1-Number_of_Collisions_PW.csv')
 forceTotal = pd.DataFrame(forceTotal)
 forceTotal.to_csv('2-AverageForce.csv')
