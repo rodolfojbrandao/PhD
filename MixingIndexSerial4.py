@@ -5,7 +5,7 @@ import math
 from pandas import DataFrame
 
 NF = 489 #number of files
-NP = 7323 #number of particles
+NP = 7261 #number of particles
 r1 = 0.003
 r2 = 0.003
 v1=(4/3*math.pi*r1*r1*r1)
@@ -30,7 +30,7 @@ Volume = pd.DataFrame(np.zeros((tamanho,NF)))
 
 posicao_vetor = 1
 
-path='/media/rodolfo/5A0819190818F5AB/DOUTORADO-SIMULACOES-COMPLETAS/CasosMisturados/07/dados'
+path='/media/rodolfo/5A0819190818F5AB/Doutorado/numerico/CasosMisturados/07c/dados'
 os.chdir(path)
 
 for j in range (0,NF):
@@ -83,4 +83,4 @@ for n in range(0, len(Volume)):
 
 cout1=pd.DataFrame(cout1)
 indice=pd.DataFrame(cout1.std())
-indice.to_csv('dados07.csv')
+indice.to_csv('dados07c.csv')

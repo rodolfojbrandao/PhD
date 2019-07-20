@@ -6,7 +6,7 @@ from multiprocessing import Pool
 N = 24 #number of cores
 a = list(range(N))
 NF = 490
-path='/media/rodolfo/5A0819190818F5AB/DOUTORADO-SIMULACOES-COMPLETAS/segregacao-tamanho/90_new/dados'
+path='/media/rodolfo/5A0819190818F5AB/Doutorado/numerico/CasosMisturados/07c/dados'
 os.chdir(path)
 result = 0
 
