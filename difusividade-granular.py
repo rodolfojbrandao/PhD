@@ -4,26 +4,31 @@ import pandas as pd
 from multiprocessing import Pool
 import math
 
-path='/media/rodolfo/5A0819190818F5AB/Doutorado/numerico/Difusividade-granular/67/dados'
+path='/home/rodolfo/Desktop/dados'
 
 os.chdir(path)
 
-NF = 5 #number of files
-NP = 170000 #number of particles
+NF = 49 #number of files
+NP = 25000 #number of particles
 ts = 1
 
 posicaoX = np.zeros((5,NF))
 posicaoY = np.zeros((5,NF))
 posicaoZ = np.zeros((5,NF))
+
 deltaX = np.zeros((5,NF))
 deltaY = np.zeros((5,NF))
 deltaZ = np.zeros((5,NF))
-distancia = np.zeros((5,NF))
+
 Deff = np.zeros((5,NF))
+
 Deff_X = np.zeros((5,NF))
 Deff_Y = np.zeros((5,NF))
 Deff_Z = np.zeros((5,NF))
-D = np.zeros((3,NF))
+
+distancia = np.zeros((5,NF))
+
+D = np.zeros((NF,3))
 
 for j in range (0,NF):
     Dados = pd.read_csv('dados.{}.csv'.format(j))
@@ -86,20 +91,26 @@ Deff_Y_medio=Deff_Y.mean(axis=1).mean()
 Deff_Z_medio=Deff_Z.mean(axis=1).mean()
 
 
-print("==========================================")
-print(Deff_X_medio)
-print(Deff_Y_medio)
-print(Deff_Z_medio)
+#print("==========================================")
+#print(Deff_X_medio)
+#print(Deff_Y_medio)
+#print(Deff_Z_medio)
 
-print("==========================================")
+#print("==========================================")
 
 Deff_X_medio0=Deff_X.mean(axis=0)
 Deff_Y_medio0=Deff_Y.mean(axis=0)
 Deff_Z_medio0=Deff_Z.mean(axis=0)
 
-D=np.concatenate((Deff_X_medio0, Deff_Y_medio0, Deff_Z_medio0), axis=0)
+Deff_X_medio0=pd.DataFrame(Deff_X_medio0)
+Deff_Y_medio0=pd.DataFrame(Deff_Y_medio0)
+Deff_Z_medio0=pd.DataFrame(Deff_Z_medio0)
+
 
 print(Deff_X_medio0)
 print(Deff_Y_medio0)
 print(Deff_Z_medio0)
-print(D)
+
+D =pd.concat([Deff_X_medio0, Deff_Y_medio0, Deff_Z_medio0], axis=1)
+D.to_csv('Deff.csv')
+
