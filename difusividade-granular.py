@@ -4,10 +4,11 @@ import pandas as pd
 from multiprocessing import Pool
 import math
 
-path='/media/rodolfo/5A0819190818F5AB/DOUTORADO-SIMULACOES-COMPLETAS/Difusividade-granular/67/dados'
+path='/media/rodolfo/5A0819190818F5AB/Doutorado/numerico/Difusividade-granular/67/dados'
+
 os.chdir(path)
 
-NF = 35 #number of files
+NF = 5 #number of files
 NP = 170000 #number of particles
 ts = 1
 
@@ -22,6 +23,7 @@ Deff = np.zeros((5,NF))
 Deff_X = np.zeros((5,NF))
 Deff_Y = np.zeros((5,NF))
 Deff_Z = np.zeros((5,NF))
+D = np.zeros((3,NF))
 
 for j in range (0,NF):
     Dados = pd.read_csv('dados.{}.csv'.format(j))
@@ -51,7 +53,6 @@ posicaoX = pd.DataFrame(posicaoX)
 posicaoY = pd.DataFrame(posicaoY)
 posicaoZ = pd.DataFrame(posicaoZ)
 
-#print(posicaoX)
 for m in range (0,NF-1):
     for n in range (0,5):
         deltaX[n,m] = abs(posicaoX.iloc[n,m+1]-posicaoX.iloc[n,m])
@@ -63,7 +64,6 @@ for m in range (0,NF-1):
         Deff_Y[n,m] = deltaY[n,m]*deltaY[n,m]/ts
         Deff_Z[n,m] = deltaZ[n,m]*deltaZ[n,m]/ts
 
-
 deltaX = pd.DataFrame(deltaX)
 Deff_X = pd.DataFrame(Deff_X)
 Deff_Y = pd.DataFrame(Deff_Y)
@@ -71,6 +71,7 @@ Deff_Z = pd.DataFrame(Deff_Z)
 
 distancia = pd.DataFrame(distancia)
 Deff = pd.DataFrame(Deff)
+
 #Deff.to_csv('Deff.csv')
 
 #print(deltaX)
@@ -84,15 +85,21 @@ Deff_X_medio=Deff_X.mean(axis=1).mean()
 Deff_Y_medio=Deff_Y.mean(axis=1).mean()
 Deff_Z_medio=Deff_Z.mean(axis=1).mean()
 
-#print(Deff_medio)
+
+print("==========================================")
 print(Deff_X_medio)
 print(Deff_Y_medio)
 print(Deff_Z_medio)
 
-Difusividade_radial=(Deff_X_medio+Deff_Y_medio)/2
-#print('=======================================')
-#print('Difusividade radial:',Difusividade_radial)
-#print('=======================================')
-#print('Difusividade axial:',Deff_Z_medio)
+print("==========================================")
 
+Deff_X_medio0=Deff_X.mean(axis=0)
+Deff_Y_medio0=Deff_Y.mean(axis=0)
+Deff_Z_medio0=Deff_Z.mean(axis=0)
 
+D=np.concatenate((Deff_X_medio0, Deff_Y_medio0, Deff_Z_medio0), axis=0)
+
+print(Deff_X_medio0)
+print(Deff_Y_medio0)
+print(Deff_Z_medio0)
+print(D)
