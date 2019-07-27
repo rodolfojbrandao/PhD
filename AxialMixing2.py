@@ -4,11 +4,11 @@ import pandas as pd
 import math
 from pandas import DataFrame
 
-NF = 499 #number of files
-NP = 33222 #number of particles
+NF = 494 #number of files
+NP = 21522 #number of particles
 
-r1 = 0.003
-r2 = 0.003*0.5
+r1 = 0.0021
+r2 = 0.0021
 
 v1=(4/3*math.pi*r1*r1*r1)
 v2=(4/3*math.pi*r2*r2*r2)
@@ -22,7 +22,7 @@ Tipo = np.zeros((NP,NF))
 contador_tipo1 = pd.DataFrame(np.zeros((tamanho,NF)))  # type: DataFrame
 contador_tipo2 = pd.DataFrame(np.zeros((tamanho,NF)))
 
-path='/media/rodolfo/5A0819190818F5AB/Doutorado/numerico/segregacao-tamanho/50/dados'
+path='/media/rodolfo/5A0819190818F5AB/Doutorado/numerico/PCC-efeito-combinado-tamanho-densidade/12/dados'
 os.chdir(path)
 
 for j in range (0,NF):
@@ -53,4 +53,4 @@ for n in range(0, len(contador_tipo1)):
         cout1.append((contador_tipo1.iloc[n,:]*v1)/((contador_tipo1.iloc[n,:]*v1)+(contador_tipo2.iloc[n,:]*v2)))
 
 cout1=pd.DataFrame(cout1)
-cout1.to_csv('axialT50.csv')
+cout1.to_csv('axialTD12.csv')
