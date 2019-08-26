@@ -4,17 +4,17 @@ import pandas as pd
 import math
 from pandas import DataFrame
 
-NF = 350 #number of files
-NP = 16311 #number of particles
+NF = 683 #number of files
+NP = 10500 #number of particles
 
 vX = np.zeros((NP,NF))
 vY = np.zeros((NP,NF))
 vZ = np.zeros((NP,NF))
 
-path='/media/rodolfo/5A0819190818F5AB/Doutorado/numerico/regimes/ValidacaoExperimental/37/dados'
+path='/home/rodolfo/Documents/regimes/45/dados'
 os.chdir(path)
 
-for j in range (220,NF):
+for j in range (0,NF):
     Dados = pd.read_csv('dados.{}.csv'.format(j))
     concluido=j/NF*100
     print(concluido)
@@ -30,4 +30,4 @@ vZ=pd.DataFrame(vZ)
 v=np.sqrt(np.square(vX)+np.square(vY)+np.square(vZ))
 
 V=v.mean(axis = 0)
-V.to_csv('Velocidade37.csv')
+V.to_csv('Velocidade45.csv')
