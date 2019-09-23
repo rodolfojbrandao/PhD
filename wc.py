@@ -30,4 +30,6 @@ vZ=pd.DataFrame(vZ)
 v=np.sqrt(np.square(vX)+np.square(vY)+np.square(vZ))
 
 V=v.mean(axis = 0)
+V  = pd.DataFrame(V)
 V.to_csv('Velocidade45.csv')
+print(type(V))
