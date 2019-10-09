@@ -1,0 +1,41 @@
+cd /home/rodolfo/GitHub/ANN-examples
+git init
+git add -A
+git commit -m "ANN"
+git pull
+
+cd /home/rodolfo/GitHub/Data
+git init
+git add -A
+git commit -m "Data"
+git pull
+
+cd /home/rodolfo/GitHub/DataAnalysis
+git init
+git add -A
+git commit -m "DataAnalysis"
+git pull
+
+cd /home/rodolfo/GitHub/DataFilter
+git init
+git add -A
+git commit -m "DataFilter"
+git pull
+
+cd /home/rodolfo/GitHub/DataVizualization
+git init
+git add -A
+git commit -m "DataVizualization"
+git pull
+
+cd /home/rodolfo/GitHub/Optimization
+git init
+git add -A
+git commit -m "Optimization"
+git pull
+
+cd /home/rodolfo/GitHub/PhD
+git init
+git add -A
+git commit -m "PhD"
+git pull
